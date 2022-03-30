@@ -1,5 +1,8 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
+// import Layout from "./../components/Layout";
+import Header from "./../components/Header";
+import Footer from "./../components/Footer";
 
 const colors = {
   brand: {
@@ -14,7 +17,9 @@ const theme = extendTheme({ colors });
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
+      <Header />
       <Component {...pageProps} />
+      <Footer />
     </ChakraProvider>
   );
 }

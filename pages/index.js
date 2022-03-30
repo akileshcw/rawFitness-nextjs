@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from "next/link";
 import Image from "next/image";
+
 import {
   Flex,
   Box,
@@ -34,30 +35,13 @@ import macros from "../public/images/pngs/macros.png";
 import cardioSection from "../public/images/pics/cardio.JPG";
 import akilImage from "../public/images/pngs/IMG_0225.png";
 
-export default function Home() {
-  const tabGroup = [
-    {
-      name: "Home",
-      href: "/",
-      id: 1,
-    },
-    {
-      name: "Features",
-      href: "/features",
-      id: 2,
-    },
-    {
-      name: "Services",
-      href: "/services",
-      id: 3,
-    },
-    {
-      name: "Blog",
-      href: "/blog",
-      id: 4,
-    },
-  ];
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
+import Map, { Marker } from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+
+export default function Home() {
   const reviewGroup = [
     // Get the data from Google Business API and populate it as array of objects
     {
@@ -85,62 +69,37 @@ export default function Home() {
       stars: 4,
     },
   ];
+
   const isNotSmallScreen = useMediaQuery("(min-width:600px)"); // Min midth 600 px sets the breakpoint for desktop screens.
+  
+  const initialValues = {
+    name: "",
+    phoneNumber: "",
+    message: "",
+  };
+  const onSubmit = (values) => {
+    // ---------use the api to store the enquiry data into a excel data to contact the lead--------
+    console.log(values);
+  };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Required!"),
+    phoneNumber: Yup.string().required("Please enter your phone number"),
+    message: Yup.string().required("Tell us your message"),
+  });
+
+  const MAPBOX_TOKEN =
+    "pk.eyJ1IjoicmF3Zml0bmVzc3N0dWRpbzIwMjAiLCJhIjoiY2wxYnNvMTFtMDAzNjNrdGZ2dGljdnh3ZSJ9.yyXufjglgxutglnXClp49Q";
+  // not a safe way to display the token here. Should take this file to the environment variable section. Edit later
+  // console.log("The form values are", formik.values);
+
   return (
     <>
       <Head>
         <title>Raw Fitness - Get Fit Stay Fit</title>
       </Head>
       {/* ----------------------Navbar---------------------------- */}
-      <Flex
-        px={20}
-        height="10vh"
-        align="center"
-        bgGradient="linear(to-r, #1488CC 20.86%, #2B32B2 66.18%)"
-        _hover={{
-          bgGradient: "linear(to-r, teal.500, green.500)",
-        }}
-      >
-        <Box
-          fontSize="2xl"
-          fontWeight="bold"
-          bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
-          bgClip="text"
-        >
-          <Link href="/">
-            <a>Raw Fitness</a>
-          </Link>
-        </Box>
-        <Spacer />
-        <Flex>
-          {tabGroup.map((tab) => (
-            <Flex
-              key={tab.id}
-              px={19.5}
-              align="center"
-              fontSize="xl"
-              _hover={{
-                bgGradient: "linear(to-br, #FF8008 23.61%, #FFC837 99.36%)",
-                borderRadius: "25px",
-                py: "5px",
-              }}
-            >
-              <Link href={tab.href}>
-                <a>{tab.name}</a>
-              </Link>
-            </Flex>
-          ))}
-        </Flex>
-        <Spacer />
-        <Button
-          bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
-          shadow="xl"
-        >
-          <Link href="/">
-            <a>Join us</a>
-          </Link>
-        </Button>
-      </Flex>
+
       {/* ----------------------NAVBAR ENDS---------------------------- */}
       {/* ----------------------PAGE CONTENT 1 STARTS---------------------------- */}
       <Flex
@@ -455,12 +414,77 @@ export default function Home() {
       </Flex>
       {/* -----------------------PAGE CONTENT 4 ENDS --------------------------*/}
       {/* -----------------------PAGE CONTENT 5 ENDS --------------------------*/}
-      <Flex height="100vh" bgGradient="linear(to-r,  #A8FF78 0%, #78FFD6 100%)">
-        <Flex flexDirection="column" mx="auto">
-          <FormControl>
-            <FormLabel htmlFor="name">Name</FormLabel>
-            <Input id="name" placeholder="Your name" />
-          </FormControl>
+      <Flex height="100vh" bgGradient="linear(to-r, #A8FF78 0%, #78FFD6 100%)">
+        <Flex flexDirection="horizontal" justifyContent="space-around">
+          <Flex
+            flexDirection="column"
+            ml={10}
+            align="center"
+            justifyContent="center"
+          >
+            <Heading mb={5}>Locate us</Heading>
+            <Map
+              initialViewState={{
+                longitude: 77.0354303678264,
+                latitude: 11.036765069843321,
+                zoom: 14,
+              }}
+              style={{ width: 500, height: 500 }}
+              mapStyle="mapbox://styles/mapbox/streets-v9"
+              mapboxAccessToken={MAPBOX_TOKEN}
+            >
+              <Marker
+                longitude={77.0354303678264}
+                latitude={11.036765069843321}
+                color="red"
+              />
+            </Map>
+          </Flex>
+          <Flex flexDirection="column">
+            <Heading>Contact US</Heading>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={onSubmit}
+              validationSchema={validationSchema}
+            >
+              <Form>
+                <FormControl>
+                  <FormLabel htmlFor="name">Name</FormLabel>
+                  <Field
+                    type="text"
+                    id="name"
+                    placeholder="Your name"
+                    name="name"
+                  />
+                  {/* formik.touched is an object from formik to check if the field is visited or not. It is turned on by formik.handleBlur */}
+                  <ErrorMessage name="name" />
+
+                  <FormLabel htmlFor="name">Phone Number</FormLabel>
+                  <Field
+                    id="phoneNumber"
+                    type="number"
+                    placeholder="Your Phone Number"
+                    name="phoneNumber"
+                  />
+                  {/* ------Form validation to check if there is no empty phone number sent to us-------- */}
+                  {/* formik.touched is an object from formik to check if the field is visited or not. It is turned on by formik.handleBlur */}
+                  <ErrorMessage name="phoneNumber" />
+
+                  <FormLabel htmlFor="message">Your Message</FormLabel>
+                  <Field
+                    type="text"
+                    id="message"
+                    placeholder="Your message to us"
+                    name="message"
+                  />
+                  {/* ----------Form validation to check if there is no empty message to us--------- */}
+                  <ErrorMessage name="message" />
+
+                  <Button type="submit">Submit</Button>
+                </FormControl>
+              </Form>
+            </Formik>
+          </Flex>
         </Flex>
       </Flex>
     </>
