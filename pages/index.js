@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import Link from "next/link";
-import Image from "next/image";
+
+import { motion } from "framer-motion";
 
 import {
   Flex,
-  Box,
-  Spacer,
   Text,
   Button,
   useMediaQuery,
@@ -17,9 +16,8 @@ import {
   Heading,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input,
+  HStack,
+  VStack,
 } from "@chakra-ui/react";
 
 import IconTextPlaceHolder from "../components/iconTextPlaceholder";
@@ -40,6 +38,9 @@ import * as Yup from "yup";
 
 import Map, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+
+const MotionText = motion(Text);
+const MotionButton = motion(Button);
 
 export default function Home() {
   const reviewGroup = [
@@ -71,7 +72,7 @@ export default function Home() {
   ];
 
   const isNotSmallScreen = useMediaQuery("(min-width:600px)"); // Min midth 600 px sets the breakpoint for desktop screens.
-  
+
   const initialValues = {
     name: "",
     phoneNumber: "",
@@ -98,9 +99,6 @@ export default function Home() {
       <Head>
         <title>Raw Fitness - Get Fit Stay Fit</title>
       </Head>
-      {/* ----------------------Navbar---------------------------- */}
-
-      {/* ----------------------NAVBAR ENDS---------------------------- */}
       {/* ----------------------PAGE CONTENT 1 STARTS---------------------------- */}
       <Flex
         bgGradient="linear(to-r, #1488CC 20.86%, #2B32B2 66.18%)"
@@ -110,61 +108,117 @@ export default function Home() {
         width="100%"
       >
         <Flex paddingTop={0} paddingLeft={200} width={500}>
-          <Text
+          <MotionText
             fontSize="5xl"
             fontWeight="bold"
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             bgClip="text"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
           >
             Welcome to Raw Fitness
-          </Text>
+          </MotionText>
         </Flex>
         <Flex paddingTop={35} paddingLeft={200} letterSpacing={3}>
-          <Text fontSize="3xl" color="white">
+          <MotionText
+            fontSize="3xl"
+            color="white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.7 }}
+          >
             Start your fitness journey
-          </Text>
+          </MotionText>
         </Flex>
         <Flex paddingTop={5} paddingLeft={200} letterSpacing={3}>
-          <Text fontSize="3xl" color="white">
+          <MotionText
+            fontSize="3xl"
+            color="white"
+            initial={{ x: "-100vw" }}
+            animate={{ x: 0 }}
+            transition={{
+              delay: 1.5,
+              duration: 0.5,
+              type: "spring",
+              stiffness: 90,
+            }}
+          >
             Right
-          </Text>
-          <Text
+          </MotionText>
+          <MotionText
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             bgClip="text"
             fontSize="3xl"
             marginLeft={2}
             fontWeight="bold"
             borderBottom="5px solid white"
+            initial={{ x: "-100vw" }}
+            animate={{ x: 0 }}
+            transition={{
+              delay: 1.5,
+              duration: 0.5,
+              type: "spring",
+              stiffness: 90,
+            }}
           >
             HERE
-          </Text>
+          </MotionText>
         </Flex>
         <Flex paddingTop={5} paddingLeft={200} letterSpacing={3}>
-          <Text fontSize="3xl" color="white">
+          <MotionText
+            fontSize="3xl"
+            color="white"
+            initial={{ x: "-100vw" }}
+            animate={{ x: 0 }}
+            transition={{
+              delay: 2,
+              duration: 0.5,
+              type: "spring",
+              stiffness: 90,
+            }}
+          >
             Right
-          </Text>
-          <Text
+          </MotionText>
+          <MotionText
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             bgClip="text"
             fontSize="3xl"
             marginLeft={2}
             fontWeight="bold"
             borderBottom="5px solid white"
+            initial={{ x: "-100vw" }}
+            animate={{ x: 0 }}
+            transition={{
+              delay: 2,
+              duration: 0.5,
+              type: "spring",
+              stiffness: 90,
+            }}
           >
             NOW
-          </Text>
+          </MotionText>
         </Flex>
         <Flex>
-          <Button
+          <MotionButton
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             shadow="xl"
             marginLeft={200}
             marginTop={5}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.8 }}
+            transition={{
+              delay: 2.5,
+              duration: 0.5,
+            }}
           >
             <Link href="/services">
               <a>Know More</a>
             </Link>
-          </Button>
+          </MotionButton>
         </Flex>
       </Flex>
       <Flex alignItems="flex-end">
@@ -414,78 +468,75 @@ export default function Home() {
       </Flex>
       {/* -----------------------PAGE CONTENT 4 ENDS --------------------------*/}
       {/* -----------------------PAGE CONTENT 5 ENDS --------------------------*/}
-      <Flex height="100vh" bgGradient="linear(to-r, #A8FF78 0%, #78FFD6 100%)">
-        <Flex flexDirection="horizontal" justifyContent="space-around">
-          <Flex
-            flexDirection="column"
-            ml={10}
-            align="center"
-            justifyContent="center"
+      <Flex
+        height="100vh"
+        bgGradient="linear(to-r, #A8FF78 0%, #78FFD6 100%)"
+        justifyContent="space-around"
+      >
+        <Flex flexDirection="column" align="center">
+          <Heading mb={5}>Locate us</Heading>
+          <Map
+            initialViewState={{
+              longitude: 77.0354303678264,
+              latitude: 11.036765069843321,
+              zoom: 14,
+            }}
+            style={{ width: 500, height: 500 }}
+            mapStyle="mapbox://styles/mapbox/streets-v9"
+            mapboxAccessToken={MAPBOX_TOKEN}
           >
-            <Heading mb={5}>Locate us</Heading>
-            <Map
-              initialViewState={{
-                longitude: 77.0354303678264,
-                latitude: 11.036765069843321,
-                zoom: 14,
-              }}
-              style={{ width: 500, height: 500 }}
-              mapStyle="mapbox://styles/mapbox/streets-v9"
-              mapboxAccessToken={MAPBOX_TOKEN}
-            >
-              <Marker
-                longitude={77.0354303678264}
-                latitude={11.036765069843321}
-                color="red"
-              />
-            </Map>
-          </Flex>
-          <Flex flexDirection="column">
-            <Heading>Contact US</Heading>
-            <Formik
-              initialValues={initialValues}
-              onSubmit={onSubmit}
-              validationSchema={validationSchema}
-            >
-              <Form>
-                <FormControl>
-                  <FormLabel htmlFor="name">Name</FormLabel>
-                  <Field
-                    type="text"
-                    id="name"
-                    placeholder="Your name"
-                    name="name"
-                  />
-                  {/* formik.touched is an object from formik to check if the field is visited or not. It is turned on by formik.handleBlur */}
-                  <ErrorMessage name="name" />
-
-                  <FormLabel htmlFor="name">Phone Number</FormLabel>
-                  <Field
-                    id="phoneNumber"
-                    type="number"
-                    placeholder="Your Phone Number"
-                    name="phoneNumber"
-                  />
-                  {/* ------Form validation to check if there is no empty phone number sent to us-------- */}
-                  {/* formik.touched is an object from formik to check if the field is visited or not. It is turned on by formik.handleBlur */}
-                  <ErrorMessage name="phoneNumber" />
-
-                  <FormLabel htmlFor="message">Your Message</FormLabel>
-                  <Field
-                    type="text"
-                    id="message"
-                    placeholder="Your message to us"
-                    name="message"
-                  />
-                  {/* ----------Form validation to check if there is no empty message to us--------- */}
-                  <ErrorMessage name="message" />
-
-                  <Button type="submit">Submit</Button>
-                </FormControl>
-              </Form>
-            </Formik>
-          </Flex>
+            <Marker
+              longitude={77.0354303678264}
+              latitude={11.036765069843321}
+              color="red"
+            />
+          </Map>
         </Flex>
+        <VStack spacing={5}>
+          <Heading>Contact US</Heading>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
+            <Form>
+              <FormControl>
+                <FormLabel htmlFor="name">Name</FormLabel>
+                <Field
+                  type="text"
+                  id="name"
+                  placeholder="Your name"
+                  name="name"
+                />
+                {/* formik.touched is an object from formik to check if the field is visited or not. It is turned on by formik.handleBlur */}
+                <ErrorMessage name="name" />
+
+                <FormLabel htmlFor="name">Phone Number</FormLabel>
+                <Field
+                  id="phoneNumber"
+                  type="number"
+                  placeholder="Your Phone Number"
+                  name="phoneNumber"
+                />
+                {/* ------Form validation to check if there is no empty phone number sent to us-------- */}
+                {/* formik.touched is an object from formik to check if the field is visited or not. It is turned on by formik.handleBlur */}
+                <ErrorMessage name="phoneNumber" />
+
+                <FormLabel htmlFor="message">Your Message</FormLabel>
+                <Field
+                  type="text"
+                  id="message"
+                  placeholder="Your message to us"
+                  name="message"
+                />
+                {/* ----------Form validation to check if there is no empty message to us--------- */}
+                <ErrorMessage name="message" />
+
+                <Button type="submit">Submit</Button>
+              </FormControl>
+            </Form>
+          </Formik>
+        </VStack>
       </Flex>
     </>
   );

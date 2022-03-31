@@ -1,6 +1,11 @@
 import React from "react";
 import { Flex, Box, Spacer, Button } from "@chakra-ui/react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
+const MotionButton = motion(Button); //
 
 function Header() {
   const tabGroup = [
@@ -37,7 +42,10 @@ function Header() {
           bgGradient: "linear(to-r, teal.500, green.500)",
         }}
       >
-        <Box
+        <MotionBox
+          animate={{ display: "block" }}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
           fontSize="2xl"
           fontWeight="bold"
           bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
@@ -46,11 +54,13 @@ function Header() {
           <Link href="/">
             <a>Raw Fitness</a>
           </Link>
-        </Box>
+        </MotionBox>
         <Spacer />
         <Flex>
           {tabGroup.map((tab) => (
-            <Flex
+            <MotionFlex
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.8 }}
               key={tab.id}
               px={19.5}
               align="center"
@@ -64,18 +74,20 @@ function Header() {
               <Link href={tab.href}>
                 <a>{tab.name}</a>
               </Link>
-            </Flex>
+            </MotionFlex>
           ))}
         </Flex>
         <Spacer />
-        <Button
+        <MotionButton
           bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
           shadow="xl"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
         >
           <Link href="/">
             <a>Join us</a>
           </Link>
-        </Button>
+        </MotionButton>
       </Flex>
     </>
   );

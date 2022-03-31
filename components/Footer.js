@@ -3,49 +3,25 @@ import { Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import Link from "next/link";
 
 function Footer() {
+  const footerLinks = [
+    { id: 0, name: "©Raw Fitness Studio 2022", src: "/" },
+    { id: 1, name: "About US", src: "/aboutUs" },
+    { id: 2, name: "Our Vision", src: "/ourVision" },
+    { id: 3, name: "Blog", src: "/blog" },
+    { id: 4, name: "Enquiries", src: "/enquiries" },
+    { id: 5, name: "Contact US", src: "/contactUS" },
+    { id: 6, name: "Terms and Conditions", src: "/features" },
+    { id: 7, name: "Privacy", src: "/services" },
+  ];
   return (
-    <Flex background="black" color="white" flexDirection="column">
-      <HStack mx="auto" spacing={500}>
-        <VStack>
-          <Link href="/">
-            <a>Home</a>
+    <Flex background="black" color="white" p={2}>
+      <HStack spacing={20} mx="auto">
+        {footerLinks.map((link) => (
+          <Link key={link.id} href={link.src}>
+            <a>{link.name}</a>
           </Link>
-          <Link href="/features">
-            <a>Features</a>
-          </Link>
-          <Link href="/services">
-            <a>Services</a>
-          </Link>
-          <Link href="/blog">
-            <a>Blog</a>
-          </Link>
-        </VStack>
-        <VStack>
-          <Link href="/aboutUs">
-            <a>About US</a>
-          </Link>
-          <Link href="/team">
-            <a>The Team</a>
-          </Link>
-          <Link href="/ourMission">
-            <a>Our Mission</a>
-          </Link>
-          <Link href="/ourVision">
-            <a>Our Vision</a>
-          </Link>
-        </VStack>
-        <VStack>
-          <Link href="/enquiries">
-            <a>Enquiries</a>
-          </Link>
-          <Link href="/contactUS">
-            <a>Contact US</a>
-          </Link>
-        </VStack>
+        ))}
       </HStack>
-      <Text mt={5} mx="auto" fontSize="xl">
-        @Raw Fitness Studio 2022
-      </Text>
     </Flex>
   );
 }
