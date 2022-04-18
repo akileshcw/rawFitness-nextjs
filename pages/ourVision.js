@@ -1,7 +1,7 @@
 import React from "react";
 
-function OurVision() {
-  return <div>OurVision</div>;
+function ourVision() {
+  return <div>ourVision</div>;
 }
 
-export default OurVision;
+export default ourVision;

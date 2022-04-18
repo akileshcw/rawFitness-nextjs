@@ -37,13 +37,15 @@ function Header() {
         px={20}
         height="10vh"
         align="center"
-        bgGradient="linear(to-r, #1488CC 20.86%, #2B32B2 66.18%)"
+        // bgGradient="linear(to-r, #1488CC 20.86%, #2B32B2 66.18%)"
         _hover={{
           bgGradient: "linear(to-r, teal.500, green.500)",
         }}
       >
         <MotionBox
-          animate={{ display: "block" }}
+          inital={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}
           fontSize="2xl"
@@ -83,6 +85,7 @@ function Header() {
           shadow="xl"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}
+          transition={{ duration: 1 }}
         >
           <Link href="/">
             <a>Join us</a>

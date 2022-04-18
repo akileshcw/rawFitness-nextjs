@@ -41,7 +41,7 @@ function Services({ workoutDelts }) {
                   width="200px"
                   alt="shoulder workout"
                 />
-                <Text>{workout.name.toUpperCase()}</Text>
+                <Text>{workout.name.toUpperCase()}</Text> */}
               </Flex>
             ))}
           </Flex>
