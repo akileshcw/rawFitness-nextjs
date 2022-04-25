@@ -15,15 +15,20 @@ function LandingPageThirdSection() {
     <>
       <Flex
         bgGradient="linear(to-r, #1488CC 20.86%, #2B32B2 66.18%)"
-        h="100vh"
+        h={[null, null, "100vh"]}
         flexDirection="column"
-        paddingTop={25}
+        paddingTop={15}
         width="100%"
       >
-        <Center fontSize="4xl" fontWeight="bold" color="white">
+        <Center fontSize="4xl" fontWeight="bold" color="white" py={5}>
           Services for you
         </Center>
-        <Flex flexDirection="row" justifyContent="space-around" paddingTop={10}>
+        <Flex
+          flexDirection={["column", "column", "row"]}
+          justifyContent="space-around"
+          px={[5, 5, 5]}
+          align="center"
+        >
           <Modal imageUrl={bmi} altTag="bmi icon" desc="Calculate your BMI" />
           <Modal
             imageUrl={macros}
@@ -40,7 +45,11 @@ function LandingPageThirdSection() {
         <Center fontSize="4xl" fontWeight="bold" py={5} color="white">
           Programs offered
         </Center>
-        <Flex flexDirection="row" justifyContent="space-evenly">
+        <Flex
+          flexDirection={["column", "column", "row"]}
+          align="center"
+          justifyContent="space-evenly"
+        >
           <Modal
             imageUrl={cardioSection}
             altTag="Raw Fitness Cardio Section"

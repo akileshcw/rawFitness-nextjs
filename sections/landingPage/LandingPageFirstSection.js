@@ -170,7 +170,7 @@ function LandingPageFirstSection() {
           <FirstSectionImage width="100%" height="100%" />
         </MotionFlex>
       </Flex>
-      <Flex h="10vh" width="100%">
+      <Flex h={[null, null, "10vh"]} width="100%">
         <Wave
           fill="url(#gradient)"
           paused={false}

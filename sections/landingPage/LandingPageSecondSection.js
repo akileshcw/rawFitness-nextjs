@@ -14,8 +14,7 @@ import ReactPlayer from "react-player/youtube";
 
 import IconTextPlaceHolder from "../../components/iconTextPlaceholder";
 
-import checkedIcon from "../../public/images/pngs/Icon-CheckedTick.png";
-import crossIcon from "../../public/images/pngs/Icon-CheckedCrossTick.png";
+
 
 function LandingPageSecondSection() {
   return (
@@ -24,19 +23,32 @@ function LandingPageSecondSection() {
         bgGradient="linear(to-r,  #A8FF78 0%, #78FFD6 100%)"
         h={[null, null, "85vh"]}
         flexDirection={["column", "column", "row"]}
-        paddingTop={5}
+        px={5}
       >
-        <Flex align="center" mx="auto">
+        <Flex
+          align="center"
+          flexDir="row"
+          justifyContent="center"
+          width={["100%", "100%", "80%"]}
+          mx={["auto", "auto", null]}
+        >
           <ReactPlayer
             url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-            playing={true}
+            playing={false}
             muted={true}
             controls={true}
             loop={true}
+            width={"100%"}
+            height={"100%"}
           />
         </Flex>
-        <Flex flexDirection="column" ml="auto">
-          <Text fontSize="4xl" fontWeight="bold" color="black">
+        <Flex flexDirection="column" align="flex-start">
+          <Text
+            fontSize="4xl"
+            fontWeight="bold"
+            color="black"
+            mx={["auto", "auto", null, null, null]}
+          >
             We believe in
           </Text>
           <Text
@@ -44,6 +56,8 @@ function LandingPageSecondSection() {
             fontWeight="bold"
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             bgClip="text"
+            align="center"
+            mx={["auto", "auto", null, null, null]}
           >
             NATURAL TRANSFORMATION
           </Text>
@@ -52,6 +66,7 @@ function LandingPageSecondSection() {
             fontWeight="italics"
             color="black"
             paddingTop={15}
+            mx={["auto", "auto", null]}
           >
             Fitness is not a goal
           </Text>
@@ -62,47 +77,47 @@ function LandingPageSecondSection() {
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             bgClip="text"
             paddingBottom={5}
+            mx={["auto", "auto", null]}
           >
             It is a lifestyle
           </Text>
-          <Grid templateRows="repeat(2,1fr)" templateColumns="repeat(2,1fr)">
+          <Grid
+            templateRows="repeat(2,1fr)"
+            templateColumns="repeat(2,1fr)"
+            px={[5, 5, null]}
+          >
             <GridItem paddingBottom={3}>
               <IconTextPlaceHolder
-                imageUrl={checkedIcon}
-                altTag="Blue Tick checked icon"
+                isTick={true}
                 description="Less Supplementation"
               />
             </GridItem>
             <GridItem paddingBottom={3}>
               <IconTextPlaceHolder
-                imageUrl={checkedIcon}
-                altTag="Blue Tick checked icon"
+                isTick={true}
                 description="Diet Based Transformation"
               />
             </GridItem>
             <GridItem>
-              <IconTextPlaceHolder
-                imageUrl={crossIcon}
-                altTag="Blue Tick checked icon"
-                description="No anaboilcs"
-              />
+              <IconTextPlaceHolder description="No anaboilcs" />
             </GridItem>
             <GridItem>
-              <IconTextPlaceHolder
-                imageUrl={crossIcon}
-                altTag="Blue Tick checked icon"
-                description="No fat burners"
-              />
+              <IconTextPlaceHolder description="No fat burners" />
             </GridItem>
           </Grid>
 
-          <Container fontSize="xl" ml={-4}>
+          <Container
+            fontSize="xl"
+            ml={-4}
+            mx={["auto", "auto", null, null, null]}
+            px={[5, 5, null]}
+          >
             We constantly thrive to make lifestyle changes through diet and
             physical activity recommendations to make your fitness a lifestyle.
             It is all about nutrition and physical activity that your fitness
             depends on!
           </Container>
-          <Flex>
+          <Flex mx={["auto", "auto", null]} py={[2, 2, 5]}>
             <Button
               bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
               shadow="xl"
@@ -120,32 +135,33 @@ function LandingPageSecondSection() {
       {/* -----------------PAGE CONTENT 2 THE BOTTOM RIBBON---------------------- */}
       <Flex
         bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
-        height="15vh"
+        height={[null, null, "15vh"]}
         justifyContent="space-around"
-        flexDirection="row"
+        flexDirection={["column", "column", "row"]}
+        align="center"
       >
-        <Flex flexDirection="column">
+        <Flex flexDirection="column" py={[2, 2, 5]}>
           <Center fontSize="4xl" fontWeight="bold">
-            300+
+            500+
           </Center>
           <Center fontSize="2xl" fontWeight="medium">
             Happy Clients
           </Center>
         </Flex>
-        <Flex flexDirection="column">
+        <Flex flexDirection="column" py={[2, 2, 5]}>
           <Center fontSize="4xl" fontWeight="bold">
             2000+
           </Center>
-          <Center fontSize="2xl" fontWeight="semibold">
+          <Center fontSize="2xl" fontWeight="medium">
             Sq.ft area
           </Center>
         </Flex>
 
-        <Flex flexDirection="column">
+        <Flex flexDirection="column" py={[2, 2, 5]}>
           <Center fontSize="4xl" fontWeight="bold">
             700+
           </Center>
-          <Center fontSize="2xl" fontWeight="semibold">
+          <Center fontSize="2xl" fontWeight="medium">
             Workouts & Stretches
           </Center>
         </Flex>

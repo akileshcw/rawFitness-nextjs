@@ -1,11 +1,17 @@
 import React from "react";
 import { Stack, Text } from "@chakra-ui/react";
-import Image from "next/image";
 
-function IconTextPlaceHolder({ imageUrl, altTag, description }) {
+import CheckedIcon from "../public/icons/Icon-CheckedTick.svg";
+import CrossIcon from "../public/icons/Icon-CheckedCrossTick.svg";
+
+function IconTextPlaceHolder({ isTick, description }) {
   return (
     <Stack direction="horizontal" paddingRight={10}>
-      <Image src={imageUrl} alt={altTag} height="10px" width="25px" />
+      {isTick ? (
+        <CheckedIcon width="25px" height="25px" />
+      ) : (
+        <CrossIcon width="25px" height="25px" />
+      )}
       <Text paddingLeft={2} fontSize="xl">
         {description}
       </Text>

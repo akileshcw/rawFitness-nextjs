@@ -23,7 +23,7 @@ export default function Home() {
       <LandingPageSecondSection />
       {/* -------------------------PAGE CONTENT 2 ENDS---------------------------- */}
       {/* ----------------------PAGE CONTENT 3 STARTS---------------------------- */}
-      {/* <LandingPageThirdSection /> */}
+      <LandingPageThirdSection />
       {/* ----------------------PAGE CONTENT 3 ENDS---------------------------- */}
       {/* -----------------------PAGE CONTENT 4 STARTS --------------------------*/}
       {/* <LandingPageFourthSection /> */}
