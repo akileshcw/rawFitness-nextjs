@@ -40,8 +40,9 @@ function LandingPageFifthSection() {
   return (
     <>
       <Flex
-        height="100vh"
+        height={[null, null, "100vh"]}
         bgGradient="linear(to-r, #A8FF78 0%, #78FFD6 100%)"
+        flexDir={{ base: "column", md: "row" }}
         justifyContent="space-around"
       >
         <Flex flexDirection="column" align="center">

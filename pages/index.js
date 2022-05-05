@@ -26,10 +26,10 @@ export default function Home() {
       <LandingPageThirdSection />
       {/* ----------------------PAGE CONTENT 3 ENDS---------------------------- */}
       {/* -----------------------PAGE CONTENT 4 STARTS --------------------------*/}
-      {/* <LandingPageFourthSection /> */}
+      <LandingPageFourthSection />
       {/* -----------------------PAGE CONTENT 4 ENDS --------------------------*/}
       {/* -----------------------PAGE CONTENT 5 STARTS --------------------------*/}
-      {/* <LandingPageFifthSection /> */}
+      <LandingPageFifthSection />
       {/* -----------------------PAGE CONTENT 5 ENDS --------------------------*/}
     </>
   );

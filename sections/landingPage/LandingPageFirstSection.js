@@ -25,12 +25,14 @@ function LandingPageFirstSection() {
         <Flex
           flexDirection="column"
           pl={[null, null, 10]}
-          mx={["auto", "auto", null]}
+          width="50%"
+          mx={["auto", "auto", "auto"]}
+          justify="center"
         >
           <MotionText
-            fontSize={["2xl", "3xl", "4xl"]}
-            mx={["auto", "auto", null]}
-            width="300px"
+            fontSize={["2xl", "3xl", "6xl"]}
+            mx={["auto", "auto", "auto"]}
+            width="100%"
             fontWeight="bold"
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             bgClip="text"
@@ -42,9 +44,9 @@ function LandingPageFirstSection() {
             Welcome to
           </MotionText>
           <MotionText
-            fontSize={["2xl", "3xl", "4xl"]}
+            fontSize={["2xl", "3xl", "6xl"]}
             fontWeight="bold"
-            width="300px"
+            width="100%"
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             bgClip="text"
             initial={{ opacity: 0 }}
@@ -159,15 +161,15 @@ function LandingPageFirstSection() {
           </Flex>
         </Flex>
         <MotionFlex
-          align="center"
+          align={{ base: "center", md: "none" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
           h={["50%", "50%", "100%"]}
-          width={["75%", "75%", "100%"]}
-          mx={["auto", "auto", null]}
+          width={["75%", "75%", "75%"]}
+          mx={{ base: "auto", md: "none" }}
         >
-          <FirstSectionImage width="100%" height="100%" />
+          <FirstSectionImage width="90%" height="90%" />
         </MotionFlex>
       </Flex>
       <Flex h={[null, null, "10vh"]} width="100%">

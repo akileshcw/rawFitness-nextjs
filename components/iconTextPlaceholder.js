@@ -1,17 +1,12 @@
 import React from "react";
 import { Stack, Text } from "@chakra-ui/react";
 
-import CheckedIcon from "../public/icons/Icon-CheckedTick.svg";
-import CrossIcon from "../public/icons/Icon-CheckedCrossTick.svg";
+import { FcApproval, FcCancel } from "react-icons/fc";
 
 function IconTextPlaceHolder({ isTick, description }) {
   return (
     <Stack direction="horizontal" paddingRight={10}>
-      {isTick ? (
-        <CheckedIcon width="25px" height="25px" />
-      ) : (
-        <CrossIcon width="25px" height="25px" />
-      )}
+      {isTick ? <FcApproval size={30} /> : <FcCancel size={25} />}
       <Text paddingLeft={2} fontSize="xl">
         {description}
       </Text>

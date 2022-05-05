@@ -37,9 +37,10 @@ function LandingPageFourthSection() {
     <>
       <Flex
         bgGradient="linear(to-r,  #A8FF78 0%, #78FFD6 100%)"
-        h="100vh"
+        h={[null, null, "100vh"]}
         flexDirection="column"
         paddingTop={5}
+        align="center"
       >
         <Center
           fontSize="4xl"
@@ -53,10 +54,13 @@ function LandingPageFourthSection() {
         >
           Member&apos;s Feedback
         </Center>
-        <Grid templateColumns="repeat(3,1fr)" gap={2}>
+        <Grid
+          templateColumns={{ base: "repeat(1,1fr)", md: "repeat(3,1fr)" }}
+          gap={[10, 2]}
+        >
           {reviewGroup.map((review) => (
             <Flex
-              ml={10}
+              ml={{ base: 0, md: 10 }}
               bg="white"
               h="250px"
               w="250px"

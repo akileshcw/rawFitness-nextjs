@@ -36,20 +36,24 @@ function Header() {
   ];
 
   const [isSmallerThan760px] = useMediaQuery("(max-width:760px)");
-  console.log(isSmallerThan760px);
+  
+  
 
   const handleHamburgerClick = () => setIsOpen(!IsOpen);
 
   return (
     <>
       <Flex
+        as="nav"
         px={[0, 0, 20]}
         height={[null, null, "10vh"]}
         flexDir={["column", "column", "row"]}
         align={[null, null, "center", "center", "center"]}
-        _hover={{
-          bgGradient: "linear(to-r, teal.500, green.500)",
-        }}
+        _hover={
+          {
+            // bgGradient: "linear(to-r, teal.500, green.500)",
+          }
+        }
       >
         <MotionFlex
           inital={{ opacity: 0 }}
@@ -90,7 +94,7 @@ function Header() {
         >
           {tabGroup.map((tab) => (
             <MotionFlex
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               display={{
                 base: IsOpen ? "flex" : "none",
@@ -102,6 +106,7 @@ function Header() {
               py={[1, 2, null]}
               align="center"
               fontSize="xl"
+              fontWeight="bold"
               _hover={{
                 bgGradient: "linear(to-br, #FF8008 23.61%, #FFC837 99.36%)",
                 borderRadius: "25px",
@@ -115,11 +120,11 @@ function Header() {
           ))}
         </Flex>
         {isSmallerThan760px && <Spacer />}
-        <Flex align="center" justifyContent="center">
+        <Flex align="center" justifyContent="center" px={2}>
           <MotionButton
             bgGradient="linear(to-br, #FF8008 23.61%, #FFC837 99.36%)"
             shadow="xl"
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.8 }}
             transition={{ duration: 1 }}
             display={{
@@ -129,7 +134,7 @@ function Header() {
             flexDir={{ base: "column", md: "row" }}
             align="center"
           >
-            <Link href="/">
+            <Link href="/signin">
               <a>Join us</a>
             </Link>
           </MotionButton>
